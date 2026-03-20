@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>目標達成カウンター</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://w3.org viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏁</text></svg>">
   
@@ -37,6 +37,11 @@
       align-items: center;
       justify-content: center;
       line-height: 1;
+      /* --- ここから追加 --- */
+      touch-action: manipulation; 
+      user-select: none;
+      -webkit-user-select: none;
+      /* --- ここまで --- */
     }
     
     button:active { transform: scale(0.95); box-shadow: none; }
@@ -62,7 +67,6 @@
 
   <div class="btn-group">
     <button class="btn-plus" onclick="countChange(1)">+</button>
-    <!-- ここを全角の「−」に変更しました -->
     <button class="btn-minus" onclick="countChange(-1)">−</button>
   </div>
 
@@ -102,5 +106,3 @@
 
 </body>
 </html>
-
-
