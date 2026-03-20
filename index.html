@@ -83,23 +83,22 @@
     .btn-minus { background-color: var(--minus-color); }
 
     /* 【広告エリア】誤クリック防止用の余白設定 */
-         /* 【最終解決版】親の余白を打ち消して強制的に中央配置する設定 */
+     /* 【真の最終解決版】数値を捨て、ブラウザの自動計算にすべて任せる */
     .ad-space { 
-      margin: 40px -30px 20px -30px !important; /* 左右の-30pxで親の余白を打ち消す */
+      margin: 40px 0 20px 0 !important; 
       padding: 0; 
       border: none; 
-      width: auto; /* width: 100%ではなくautoにする */
-      display: block; 
-      text-align: center;
-      clear: both;
+      width: 100%;
+      display: flex; /* 要素を箱として扱う */
+      justify-content: center; /* 中身を水平方向の真ん中に置く */
+      align-items: center; /* 中身を垂直方向の真ん中に置く */
     }
 
-    /* 広告内の全要素を、画面の絶対中央に強制配置 */
+    /* 広告タグが生成する中身を「インラインブロック」として扱い、中央寄せを有効にする */
     .ad-space * {
-      margin-left: auto !important;
-      margin-right: auto !important;
+      margin: 0 auto !important;
       display: inline-block !important;
-      text-align: center !important;
+      max-width: 100% !important;
     }
 
 
