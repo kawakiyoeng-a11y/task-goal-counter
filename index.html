@@ -84,16 +84,17 @@
 
     /* 【広告エリア】誤クリック防止用の余白設定 */
     .ad-space { 
-      margin-top: 40px; 
-      padding: 10px; 
+      margin: 40px auto 20px; 
+      padding: 0; 
       border: none; 
-      color: #999; 
-      font-size: 12px; 
-      /* --- ここから追加：広告を中央に寄せる --- */
-      display: flex;
-      justify-content: center;
-      width: 100%;
-      /* --- ここまで --- */
+      width: 100%; 
+      text-align: center; /* 中身を中央に寄せる */
+    }
+
+    /* 広告内の要素を強制的に中央へ */
+    .ad-space > * {
+      margin-left: auto !important;
+      margin-right: auto !important;
     }
   </style>
 </head>
@@ -121,7 +122,7 @@
   <div class="ad-space">
     <!-- ここに広告タグをペースト -->
     <!-- admax -->
-<script src="https://adm.shinobi.jp/s/022ae58736fde05bc65f69bf5deb5f30"></script>
+<script src="https://adm.shinobi.jp/s/9c7c4fe39804f8904588daf8a6652359"></script>
 <!-- admax -->
   </div>
 </div>
