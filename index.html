@@ -83,28 +83,25 @@
     .btn-minus { background-color: var(--minus-color); }
 
     /* 【広告エリア】誤クリック防止用の余白設定 */
-        .ad-space { 
-      margin: 40px auto 20px; 
+         /* 【最終解決版】親の余白を打ち消して強制的に中央配置する設定 */
+    .ad-space { 
+      margin: 40px -30px 20px -30px !important; /* 左右の-30pxで親の余白を打ち消す */
       padding: 0; 
       border: none; 
-      width: 100%;
-      /* --- ここから修正：力技で中央に押し戻す --- */
+      width: auto; /* width: 100%ではなくautoにする */
       display: block; 
       text-align: center;
+      clear: both;
     }
 
-    /* 広告タグが生成する要素すべてを強制的に中央に寄せる */
+    /* 広告内の全要素を、画面の絶対中央に強制配置 */
     .ad-space * {
       margin-left: auto !important;
       margin-right: auto !important;
+      display: inline-block !important;
       text-align: center !important;
     }
-    
-    /* それでもダメな場合の最終手段：親要素に中央寄せをかける */
-    .ad-space iframe, .ad-space ins, .ad-space div {
-      display: inline-block !important;
-      vertical-align: middle !important;
-    }
+
 
   </style>
 </head>
