@@ -3,13 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>目標達成カウンター</title>
+  
+  <!-- 【SEO】検索エンジン用の設定 -->
+  <title>目標達成カウンター | 単純作業のモチベーション維持に</title>
+  <meta name="description" content="単純作業のモチベーションを維持するための手動カウントダウン計。目標タスク数を設定し、残り数と達成率（％）をリアルタイムで可視化。効率化を支援する無料Webツール。">
+  <meta name="keywords" content="カウンター,カウントダウン,タスク管理,モチベーション,単純作業,効率化,達成率,無料ツール">
+  <meta name="author" content="あなたの名前（任意）">
+
+  <!-- 【アイコン】ブラウザのタブに表示される絵文字 -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://w3.org viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏁</text></svg>">
   
   <style>
     :root { --main-color: #4A90E2; --plus-color: #4CAF50; --minus-color: #F44336; }
-    body { font-family: 'Helvetica Neue', Arial, sans-serif; text-align: center; margin: 0; padding: 20px; background-color: #f8f9fa; color: #333; padding-bottom: 50px !important;　}
-    .container { max-width: 500px; margin: auto; background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+    
+    body { 
+      font-family: 'Helvetica Neue', Arial, sans-serif; 
+      text-align: center; 
+      margin: 0; 
+      padding: 20px; 
+      background-color: #f8f9fa; 
+      color: #333;
+      /* 広告との重なり防止用の下部余白 */
+      padding-bottom: 50px !important; 
+    }
+
+    .container { 
+      max-width: 500px; 
+      margin: auto; 
+      background: white; 
+      padding: 30px; 
+      border-radius: 20px; 
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
+    }
     
     .setting-section { margin-bottom: 20px; font-size: 14px; color: #777; }
     input { font-size: 18px; width: 80px; padding: 5px; text-align: center; border: 1px solid #ddd; border-radius: 8px; }
@@ -20,8 +45,15 @@
     #progress-bar { width: 0%; height: 100%; background: var(--main-color); transition: 0.3s; }
     #percent { font-weight: bold; color: var(--main-color); font-size: 20px; }
 
-    .btn-group { display: flex; justify-content: center; gap: 20px; margin-top: 20px; margin-bottom: 50px; }
+    .btn-group { 
+      display: flex; 
+      justify-content: center; 
+      gap: 20px; 
+      margin-top: 20px; 
+      margin-bottom: 50px; /* 広告との安全な距離 */
+    }
     
+    /* 【UX】モダンで連打しやすいボタン設計 */
     button { 
       flex: 1; 
       height: 100px; 
@@ -37,18 +69,26 @@
       align-items: center;
       justify-content: center;
       line-height: 1;
-      /* --- ここから追加 --- */
+      /* iPhoneのズームと選択を防止 */
       touch-action: manipulation; 
       user-select: none;
       -webkit-user-select: none;
-      /* --- ここまで --- */
     }
     
+    /* ボタンを押したときの沈み込み演出 */
     button:active { transform: translateY(2px); box-shadow: none; }
+    
     .btn-plus { background-color: var(--plus-color); }
     .btn-minus { background-color: var(--minus-color); }
 
-    .ad-space { margin-top: 40px; padding: 10px; border: none; color: #999; font-size: 12px; }
+    /* 【広告エリア】誤クリック防止用の余白設定 */
+    .ad-space { 
+      margin-top: 40px; 
+      padding: 10px; 
+      border: none; 
+      color: #999; 
+      font-size: 12px; 
+    }
   </style>
 </head>
 <body>
@@ -66,13 +106,15 @@
   <div id="display">100</div>
 
   <div class="btn-group">
+    <!-- 【配置】＋(緑)を左、−(赤/メイン操作)を右に配置し、親指での操作性を向上 -->
     <button class="btn-plus" onclick="countChange(1)">+</button>
     <button class="btn-minus" onclick="countChange(-1)">−</button>
   </div>
 
-  <!-- admax -->
-<script src="https://adm.shinobi.jp/s/022ae58736fde05bc65f69bf5deb5f30"></script>
-<!-- admax -->
+  <!-- ここに忍者AdMaxのコードを再度貼り付けてください -->
+  <div class="ad-space">
+    <!-- ここに広告タグをペースト -->
+  </div>
 </div>
 
 <script>
@@ -81,19 +123,23 @@
   const progressBar = document.getElementById('progress-bar');
   const percentText = document.getElementById('percent');
 
+  // 目標値が変わったら表示を更新
   goalInput.oninput = () => {
     display.innerText = goalInput.value;
     updateProgress();
   };
 
+  // カウント増減の処理
   function countChange(n) {
     let current = parseInt(display.innerText);
     let nextValue = current + n;
+    // 0以下にはならないように設定
     if (nextValue < 0) nextValue = 0;
     display.innerText = nextValue;
     updateProgress();
   }
 
+  // 達成率とプログレスバーの更新
   function updateProgress() {
     const goal = parseInt(goalInput.value);
     const current = parseInt(display.innerText);
@@ -101,8 +147,14 @@
     const percent = Math.min(100, Math.floor((done / goal) * 100));
     
     progressBar.style.width = percent + '%';
-    percentText.innerText = (percent === 100) ? "🎉 目標達成！" : percent + '% 達成';
-    percentText.style.color = (percent === 100) ? "#FFD700" : "#4A90E2";
+    
+    if (percent === 100) {
+      percentText.innerText = "🎉 目標達成！";
+      percentText.style.color = "#FFD700"; // 金色
+    } else {
+      percentText.innerText = percent + '% 達成';
+      percentText.style.color = "#4A90E2"; // 青色
+    }
   }
 </script>
 
